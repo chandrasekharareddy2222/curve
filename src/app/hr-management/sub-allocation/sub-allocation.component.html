@@ -1,0 +1,19 @@
+<div class="sub-allocation">
+  <h3>Substitute Teacher</h3>
+
+  <div class="margin-top-15">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="list-group">
+          <div class="grey">Absentees</div>
+          <a *ngFor="let ab of absentees" class="font-12 list-group-item list-group-item-action"
+             [ngClass]="selectedAbsentee && selectedAbsentee.staffId == ab.staffId ? 'active' : ''" (click)="selectAbsentee($event, ab)">{{ab.staffName}}</a>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+
+      </div>
+    </div>
+  </div>
+</div>

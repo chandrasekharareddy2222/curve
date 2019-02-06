@@ -1,0 +1,127 @@
+$font-size: 14px;
+$line-height: 1.6;
+$lines-to-show: 3;
+
+.filter-notice-div {
+  width: 300px;
+  margin-right: 3rem;
+  margin-top: 2rem;
+
+  .filter-div {
+    border: 0.1rem solid #171923;
+    border-radius: 0.5rem;
+  }
+  .filter-heading {
+    height: 40px;
+    font-weight: 900;
+    background-color: #f0f0f0;
+    padding-left: 1rem;
+    padding-top: 0.8rem;
+    border-radius: 0.5rem;
+  }
+
+  .filter-date-body {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    .filter-date-inner-div:first-child {
+      border-bottom: 1px solid #171923;
+    }
+  }
+
+  .filter-date-inner-div {
+    height: 40px;
+    padding-left: 1rem;
+    padding-top: 0.8rem;
+    padding-right: 0.5rem;
+
+    .date-span {
+      float: right;
+    }
+  }
+
+  .filter-posted-by-body {
+    min-height: 90px;
+    padding: 0.5rem 1rem;
+
+    .posted-by-name {
+      border: 1px solid #171923;
+      border-radius: 0.5rem;
+      padding: 0.2rem;
+      margin-left: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .filter-subjects-body {
+    min-height: 90px;
+  }
+}
+.notice-details-div {
+  vertical-align: top;
+  width:calc(100% - 335px);
+  min-width: 585px;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+}
+.notice-div {
+  //max-width: 800px;
+  padding: 1.5rem 2rem 0.5rem 1.5rem;
+  margin-bottom: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #171923;
+
+  .notice-desc {
+    display: block;
+    display: -webkit-box;
+    height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+    font-size: $font-size;
+    line-height: $line-height;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    color: #171923;
+  }
+  .notice-desc:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .notice-desc:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white;
+  }
+
+  .notice-footer {
+    padding: 1.5rem 0 1rem;
+  }
+
+  .notice-footer-date-div, .notice-footer-teacher-div {
+    width: 220px;
+    border-radius: 0.2rem;
+    background-color: #f0f0f0;
+    padding: 0.5rem 1rem;
+    margin-right: 2.5rem;
+    height: 35px;
+  }
+
+  .notice-footer-teacher-div {
+    width: 290px;
+  }
+
+  .notice-footer-relatedTo-div {
+    width: 140px;
+    border-radius: 0.2rem;
+    background-color: #f0f0f0;
+    float: right;
+    padding: 0.5rem 1rem;
+  }
+}

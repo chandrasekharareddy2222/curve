@@ -1,0 +1,55 @@
+.edit-section {
+  background-color: #ffffff;
+  padding-bottom: 4rem;
+  width: 375px;
+  margin-right: 3rem;
+  margin-top: 2rem;
+
+  .edit-section-inputs {
+    margin-top: 1rem;
+  }
+}
+
+.courses-table-section {
+  padding: 1.5rem;
+  //background-color: #60C0FE;
+  border-radius: 0.8rem;
+  border: 1px solid #171923;
+  vertical-align: top;
+  width: calc(100% - 410px);
+  min-width: 585px;
+  margin-top: 2rem;
+
+  table {
+    width: 100%;
+  }
+}
+
+.section-names {
+  padding-right: 0.3rem;
+}
+
+.input-div {
+  width: 90%;
+  margin: auto;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.master-subject-form {
+  width: 90%;
+  margin: auto;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.master-subject-div {
+  position: relative;
+  .add-master-subject {
+    position: absolute;
+    right: 5%;
+    top: 2px;
+  }
+}

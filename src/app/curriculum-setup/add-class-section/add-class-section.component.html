@@ -1,0 +1,67 @@
+<div class="classes-list d-inline-block">
+  <div class="table-wrapper">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>CLASS</th>
+        <th>SECTIONS</th>
+        <th>ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let gradeName of getGradeNames();">
+        <td>{{ gradeName }}</td>
+        <td>
+        <span *ngFor="let section of gradesList[gradeName]?.sections;let $i = index">
+          {{ section?.section }}{{($i < gradesList[gradeName]?.sections.length - 1) ? ',' : ''}}&nbsp;
+        </span>
+        </td>
+        <td>
+          <i class="fa fa-pencil pointer" (click)="setActiveGrade(gradesList[gradeName])"></i>
+          &nbsp;&nbsp;
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="edit-class-section-div d-inline-block" *ngIf="activeGrade">
+  <div class="table-wrapper">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th colspan="2">{{activeGrade.grade}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let section of activeGrade.sections;">
+        <td *ngIf="!section.edit && !section.add">{{ section?.section }}</td>
+        <td *ngIf="section.edit || section.add">
+          <input id="name" type="text" [(ngModel)]="section.section" />
+        </td>
+        <td *ngIf="!section.edit && !section.add" class="text-center">
+          <i class="fa fa-pencil pointer" (click)="editSection(section)"></i>
+          &nbsp;&nbsp;
+          <i class="fa fa-trash pointer" (click)="deleteSection(section)"></i>
+        </td>
+        <td *ngIf="section.edit" class="text-center">
+          <i class="fa fa-save pointer" (click)="updateSection(section)"></i>
+          &nbsp;
+        </td>
+        <td *ngIf="section.add" class="text-center">
+          <i class="fa fa-save pointer" (click)="saveNewSection(section)"></i>
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="button pointer" class="font-13" (click)="addNewSection(activeGrade.grade)">
+            <i class="fa fa-plus"></i>&nbsp;Add New
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-confirm-delete></app-confirm-delete>

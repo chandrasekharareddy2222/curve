@@ -1,0 +1,57 @@
+<div>
+  <div class="filter-notice-div d-inline-block">
+    <div class="filter-date-div filter-div">
+      <div class="filter-heading">
+        <span>Dates</span>
+      </div>
+      <div class="filter-date-body">
+        <div class="filter-date-inner-div">
+          <span>End Date</span>
+          <span class="date-span">29 June 2018</span>
+        </div>
+        <div class="filter-date-inner-div">
+          <span>Start Date</span>
+          <span class="date-span">21 June 2019</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="filter-posted-by-div filter-div  margin-top-40">
+      <div class="filter-heading">
+        <span>Posted By</span>
+      </div>
+      <div class="filter-posted-by-body">
+        <div class="posted-by-name d-inline-block">Dhiraj Kumar <i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="posted-by-name d-inline-block">Kishore Reddy <i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="posted-by-name d-inline-block">Mahendra Varma <i class="fa fa-times" aria-hidden="true"></i></div>
+      </div>
+    </div>
+    <div class="filter-subjects-div filter-div  margin-top-40">
+      <div class="filter-heading">
+        <span>Subjects</span>
+      </div>
+      <div class="filter-subjects-body">
+
+      </div>
+    </div>
+  </div>
+  <div class="notice-details-div d-inline-block">
+    <div class="notice-div" *ngFor="let notice of noticeData">
+      <h3 class="notice-title">{{ notice.title }}</h3>
+      <div class="notice-desc">
+        {{ notice.desc }}
+      </div>
+      <div class="notice-footer">
+        <div class="notice-footer-date-div d-inline-block">
+          <i class="fa fa-clock-o" aria-hidden="true"></i> {{ notice.postedDate }}
+        </div>
+        <div class="notice-footer-teacher-div d-inline-block">
+          <i class="fa fa-pencil" aria-hidden="true"></i> {{ notice.postedBy }} - {{ notice.subject }}
+        </div>
+        <div class="notice-footer-relatedTo-div d-inline-block">
+          <i class="fa fa-eye" aria-hidden="true"></i> {{ notice.relatedTo }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

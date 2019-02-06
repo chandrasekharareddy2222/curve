@@ -1,0 +1,65 @@
+table.table {
+  margin-bottom: 0;
+}
+
+thead {
+  th {
+    text-align: center;
+    min-width: 135px;
+  }
+}
+
+tbody {
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+  td {
+    text-align: center;
+    padding-left: 0.75em;
+    .fa {
+      font-size: 29px;
+      cursor: pointer;
+    }
+  }
+}
+
+.table-wrapper {
+  width: 90%;
+  margin: auto;
+}
+
+.course-teacher-div {
+  width: 300px;
+  height: 148px;
+  border-radius: 6px;
+
+  .course-details-div {
+    border-bottom: 1px solid black;
+  }
+
+  .course-details-div, .teacher-details-div {
+    padding-top: 17px;
+    height: 35%;
+    padding-left: 20px;
+  }
+
+  .tooltip-detail-title {
+    float: left;
+  }
+
+  .selected-tooltip-value {
+    width: 200px;
+  }
+
+  .fa {
+    font-size: 14px !important;
+    margin-left: 30px;
+  }
+}
+
+.course-teacher-td {
+  background-color: #93ef95;
+}
+.create-course-td, .label-td {
+  padding-top: 1.5rem;
+}

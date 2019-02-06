@@ -1,0 +1,39 @@
+span {
+  position: relative;
+  display: inline-block;
+  margin: 10px 10px;
+}
+.basic-slide {
+  display: inline-block;
+  width: 350px;
+  padding: 10px 0 10px 125px;
+  font-family: "Open Sans", sans;
+  font-weight: 400;
+  color: #377D6A;
+  background: #efefef;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+  border: 1px solid grey;
+  background-color: #ffffff;
+  &::-webkit-input-placeholder {
+    text-indent: 0;
+    font-weight: 300;
+  }
+
+  + label {
+    width: 120px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 12px 5px 14px;
+    text-shadow: 0 1px 0 rgba(19,74,70,.4);
+    background: #efefef;
+    transition: all .3s ease-in-out;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid grey;
+    font-size: 12px;
+  }
+}

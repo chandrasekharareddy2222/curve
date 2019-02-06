@@ -1,0 +1,124 @@
+<div>
+  <div class="setup-tt-form">
+    <select-class-section></select-class-section>
+
+    <div class="margin-top-20 center-all">
+      <label>Select Time:&nbsp;&nbsp;</label>
+      <ngb-timepicker [(ngModel)]="time" meridian="ON"></ngb-timepicker>
+    </div>
+
+    <div class="contain margin-top-20">
+      <div>Define Teaching Periods:</div>
+
+      <div class="margin-top-5 flex-3">
+        <div class="margin-right-25">
+          <mat-form-field>
+            <input min="0" max="10" matInput type="number" [(ngModel)]="numPeriod" placeholder="No. of Periods" value="">
+          </mat-form-field>
+        </div>
+
+        <div class="margin-right-25">
+          <mat-form-field>
+            <input min="0" max="75" matInput type="number" [(ngModel)]="durationPeriod" placeholder="Duration(mins)" value="">
+          </mat-form-field>
+        </div>
+    </div>
+
+    <div class="contain margin-top-20" *ngFor="let br of breaks">
+      <div>Define Breaks:</div>
+
+      <div class="margin-top-5 flex-3">
+        <div class="margin-right-25">
+          <mat-form-field>
+            <mat-select placeholder="Start After" [(value)]="br.startAfter" (selectionChange)="breakChange(br)">
+              <ng-container *ngFor="let period of br.periodDD">
+                <mat-option [value]="period.value" *ngIf="!period.isDisable">
+                  {{period.name}}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="margin-right-25">
+          <mat-form-field>
+            <input min="0" max="75" matInput type="number" placeholder="Duration(mins)" [(ngModel)]="br.duration">
+          </mat-form-field>
+        </div>
+        <div (click)="deleteBreak(br)" class="pointer">delete</div>
+      </div>
+    </div>
+
+    <button *ngIf="breaks.length < numPeriod - 1" (click)="addBreak()" class="margin-right-25">Add Break</button>
+
+    <button (click)="showPreview()" class="margin-right-25">Show Preview</button>
+    <button (click)="savePreview()">Save Preview</button>
+    </div>
+
+    <div class="preview" *ngIf="viewPreview">
+      <table class="prev">
+        <tr>
+          <td></td>
+          <td *ngFor="let t of header">
+            <div>{{t.time}}</div>
+            <div><span *ngIf="!t.isBreak" class="font-12">(Period {{t.period}})</span></div>
+          </td>
+        </tr>
+        <tr>
+          <td>Monday</td>
+          <td *ngFor="let t of header">
+            <div class="period" *ngIf="!t.isBreak"></div>
+            <div class="break" *ngIf="t.isBreak"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Tuesday</td>
+          <td *ngFor="let t of header">
+            <div class="period" *ngIf="!t.isBreak"></div>
+            <div class="break" *ngIf="t.isBreak"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Wednesday</td>
+          <td *ngFor="let t of header">
+            <div class="period" *ngIf="!t.isBreak"></div>
+            <div class="break" *ngIf="t.isBreak"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Thursday</td>
+          <td *ngFor="let t of header">
+            <div class="period" *ngIf="!t.isBreak"></div>
+            <div class="break" *ngIf="t.isBreak"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Friday</td>
+          <td *ngFor="let t of header">
+            <div class="period" *ngIf="!t.isBreak"></div>
+            <div class="break" *ngIf="t.isBreak"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Saturday</td>
+          <td *ngFor="let t of header">
+            <div class="period" *ngIf="!t.isBreak"></div>
+            <div class="break" *ngIf="t.isBreak"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Sunday</td>
+          <td *ngFor="let t of header">
+            <div></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

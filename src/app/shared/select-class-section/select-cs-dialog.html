@@ -1,0 +1,21 @@
+<div>
+  <div class="heading">CLASS/SECTION</div>
+  <div class="selected padding-10">
+    <div class="inline-block" *ngFor="let std of data.csFormatted">
+      <ng-container *ngFor="let s of std.sections">
+        <div class="unit-c-s" *ngIf="s.isSelected">{{std.grade + ' ' +s.section}}</div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="classes">
+    <div class="unit-class" [ngClass]="cs == selectedClass ? 'selected' : ''" *ngFor="let cs of data.csFormatted" (click)="selectClass(cs)">{{cs.grade}}</div>
+  </div>
+
+  <div class="sections">
+    <div *ngIf="selectedClass">
+      <div class="unit-section big" [ngClass]="isAllSelected() ? 'selected' : ''" (click)="selectSection('ALL')">SELECT ALL</div>
+      <div class="unit-section" [ngClass]="c.isSelected ? 'selected' : ''" *ngFor="let c of selectedClass.sections" (click)="selectSection(c)"> {{'Section ' + c.section}}</div>
+    </div>
+  </div>
+</div>

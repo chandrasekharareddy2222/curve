@@ -1,0 +1,14 @@
+<div class="main-cs">
+  <div (click)="openDialog()" class="link">Select Class/Section:&nbsp;&nbsp;</div>
+  <div class="cs-container">
+    <div class="inline-block" *ngFor="let std of csFormatted">
+      <ng-container *ngFor="let s of std.sections">
+        <div class="unit-c-s" *ngIf="s.isSelected">
+          {{std.grade + ' ' +s.section}}
+          &nbsp;&nbsp;
+          <span class="fa fa-close tag-d" (click)="s.isSelected = false;"></span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

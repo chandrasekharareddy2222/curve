@@ -1,0 +1,78 @@
+<div class="staff-attendance">
+  <mat-tab-group (selectedTabChange)="tabChanged($event)">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Attendance Report
+      </ng-template>
+      <div class="att-report margin-top-10">
+        <div>
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="selectedDate" (dateChange)="fetchFresh()" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <table class="table table-hover" *ngIf="rawAttendance">
+          <thead>
+          <tr>
+            <th>NAME</th>
+            <th *ngFor="let d of dateHeader" class="date-h">{{d.display}}</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let key of keys(rawAttendance)">
+            <td>{{rawAttendance[key][0].staffName}}</td>
+            <td *ngFor="let d of dateHeader" class="date-h text-center">
+              <div class="chip-att" *ngIf="findAttForDate(d, key)">{{findAttForDate(d, key)}}</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Take Attendance
+      </ng-template>
+      <div class="att-take margin-top-10">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>NAME</th>
+            <th>ROLE</th>
+            <th>STAFF ID</th>
+            <th>MARK ATTENDANCE</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let staff of staffList; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{staff.firstName + ' ' + staff.lastName}}</td>
+            <td>{{staff.type}}</td>
+            <td>{{staff.staffId}}</td>
+            <td>
+              <div *ngIf="staff.isSaved">
+                {{staff.attendance}}
+                &nbsp;
+                <a (click)="staff.isSaved = false;"><i class="fa fa-pencil"></i></a>
+              </div>
+
+              <div *ngIf="!staff.isSaved">
+                <select [(ngModel)]="staff.attendance">
+                  <option [value]="type.value" *ngFor="let type of attTypes">{{type.name}}</option>
+                </select>
+                &nbsp;
+                <a (click)="saveAtt(staff)"><i class="fa fa-save"></i></a>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

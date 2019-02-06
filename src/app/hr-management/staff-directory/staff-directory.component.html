@@ -1,0 +1,89 @@
+<div>
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="fa fa-list-ul"></i>
+        &nbsp;List View
+      </ng-template>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="firstName"> Name </th>
+            <td mat-cell *matCellDef="let row" (click)="redirectToProfile(row)"> {{row.firstName + ' ' + row.lastName}} </td>
+          </ng-container>
+
+          <!-- Staff Id Column -->
+          <ng-container matColumnDef="staffId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff Id </th>
+            <td mat-cell *matCellDef="let row"> {{row.staffId}} </td>
+          </ng-container>
+
+          <!-- Mobile Column -->
+          <ng-container matColumnDef="mob">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="primaryPhone"> Mobile </th>
+            <td mat-cell *matCellDef="let row"> {{row.primaryPhone}} </td>
+          </ng-container>
+
+          <!-- Course Column -->
+          <ng-container matColumnDef="courseType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="schoolInfo.board"> Course </th>
+            <td mat-cell class="cursor-pointer" *matCellDef="let row"> {{row.schoolInfo.board}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="fa fa-th-large"></i>
+        &nbsp;Grid View
+      </ng-template>
+      <div class="grid-view">
+        <mat-card class="hr-card" *ngFor="let staff of staffList">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title title="{{staff.firstName+' '+staff.lastName}}">{{staff.firstName + ' ' + staff.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{staff.staffId}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div>{{staff.schoolInfo.board}}</div>
+            <div>
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              &nbsp;+91-{{staff.primaryPhone}}
+            </div>
+            <div class="back-grey">
+              <span class="border-right">
+                <span class="grey">{{staff.gender}}&nbsp;&nbsp;</span>
+                <span class="fa fa-male"></span>
+              </span>
+
+              <span class="border-right">
+                <span class="grey">Blood Group&nbsp;&nbsp;</span>
+                <span class="bold">{{setBG(staff.bloodGroup)}}</span>
+              </span>
+            </div>
+
+            <span class="tag-look" *ngFor="let c of staff.courses">{{c}}</span>
+          </mat-card-content>
+          <!--<mat-card-footer>
+            <i class="fa fa-file-pdf-o"></i>&nbsp;
+            <i class="fa fa-file-excel-o"></i>&nbsp;
+            <i class="fa"></i>&nbsp;
+          </mat-card-footer>-->
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

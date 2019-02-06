@@ -1,0 +1,522 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "theme";
+
+:root {
+  font-size: 62.5%;
+  line-height: 1.6em;
+  --background: rgba(0, 214, 170, .85);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+*:not(.fa, .mat-icon) {
+  font-family: 'Lato', sans-serif !important;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 1.6rem !important;
+}
+
+
+.error-message {
+  color: #ab2222;
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+/* ==========================================================================
+Browser Upgrade Prompt
+========================================================================== */
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+Generic styles
+========================================================================== */
+
+/* Error highlight on input fields */
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid green;
+}
+
+.ng-invalid:not(form) {
+  border: none;
+}
+
+/* other generic styles */
+
+.jh-card {
+  padding: 1.5%;
+  margin-top: 20px;
+  border: none;
+}
+
+.error {
+  color: white;
+  background-color: red;
+}
+
+.pad {
+  padding: 10px;
+}
+
+.break {
+  white-space: normal;
+  word-break: break-all;
+}
+
+.readonly {
+  background-color: #eee;
+  opacity: 1;
+}
+
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+make sure browsers use the pointer cursor for anchors, even with no href
+========================================================================== */
+a:hover {
+  cursor: pointer;
+}
+
+.hand,
+[jhisortby] {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+Custom alerts for notification
+========================================================================== */
+.alerts {
+  .alert {
+    text-overflow: ellipsis;
+    pre {
+      background: none;
+      border: none;
+      font: inherit;
+      color: inherit;
+      padding: 0;
+      margin: 0;
+    }
+    .popover pre {
+      font-size: 10px;
+    }
+  }
+  .toast {
+    position: fixed;
+    width: 100%;
+    &.left {
+      left: 5px;
+    }
+    &.right {
+      right: 5px;
+    }
+    &.top {
+      top: 55px;
+    }
+    &.bottom {
+      bottom: 55px;
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .alerts .toast {
+    width: 50%;
+  }
+}
+
+/* ==========================================================================
+entity tables helpers
+========================================================================== */
+
+/* Remove Bootstrap padding from the element
+http://stackoverflow.com/questions/19562903/remove-padding-from-columns-in-bootstrap-3 */
+@mixin no-padding($side) {
+  @if $side == 'all' {
+    .no-padding {
+      padding: 0 !important;
+    }
+  } @else {
+    .no-padding-#{$side} {
+      padding-#{$side}: 0 !important;
+    }
+  }
+}
+@include no-padding('left');
+@include no-padding('right');
+@include no-padding('top');
+@include no-padding('bottom');
+@include no-padding('all');
+
+/* bootstrap 3 input-group 100% width
+http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
+.width-min {
+  width: 1% !important;
+}
+
+/* Makes toolbar not wrap on smaller screens
+http://www.sketchingwithcss.com/samplechapter/cheatsheet.html#right */
+.flex-btn-group-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+entity detail page css
+========================================================================== */
+.row.jh-entity-details > {
+  dd {
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .row.jh-entity-details > {
+    dt {
+      margin-bottom: 15px;
+    }
+    dd {
+      border-bottom: 1px solid #eee;
+      padding-left: 180px;
+      margin-left: 0;
+    }
+  }
+}
+
+/* ==========================================================================
+ui bootstrap tweaks
+========================================================================== */
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+.datetime-picker-dropdown > li.date-picker-menu div > table .btn-default,
+.uib-datepicker-popup > li > div.uib-datepicker > table .btn-default {
+  border: 0;
+}
+
+.datetime-picker-dropdown > li.date-picker-menu div > table:focus,
+.uib-datepicker-popup > li > div.uib-datepicker > table:focus {
+  outline: none;
+}
+
+.thread-dump-modal-lock {
+  max-width: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* jhipster-needle-scss-add-main JHipster will add new css style */
+.height-100 {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.main-container {
+  padding: 0 !important;
+}
+
+/*=================================================
+Scroll Bar styling
+===================================================*/
+/* width */
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  //box-shadow: inset 0 0 5px grey;
+  border-radius: 1rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $witcurve-color;
+  border-radius: 1rem;
+}
+
+
+/*Custom scroll bar*/
+.custom-scroll-bar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  background-color: $white;
+}
+
+.custom-scroll-bar::-webkit-scrollbar {
+  width: 1rem;
+  background-color: $white;
+  max-height: 150px;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: $witcurve-color;
+}
+
+.custom-scroll-bar {
+  overflow-y: hidden;
+}
+/*========================================================
+CUSTOM CHECKBOXES
+=========================================================*/
+.witcurve-checkbox {
+  width: 45px;
+  position: relative;
+  margin: 20px auto;
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $witcurve-color;
+    border-radius: 4px;
+    &:after {
+      content: '';
+      width: 12px;
+      height: 7px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid #ffffff;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+  }
+  input[type=checkbox]:checked + label:after {
+    opacity: 1;
+  }
+  span {
+    position: absolute;
+    left: 25px;
+    top: 0px;
+  }
+}
+
+/*assessment options popover end*/
+.squaredFour {
+  position: relative;
+  margin:auto 10px;
+
+  label {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0 1px 3px rgba(0,0,0,0.1);
+    //border-radius: 4px;
+    background-color: #f0efef;
+    color: #f0efef;
+
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 5px;
+      left: 4px;
+      border: 3px solid #fff;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+  }
+
+  label.input-disabled {
+    cursor: not-allowed;
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+
+  input[type=checkbox]:checked + label {
+    background-color: #3198ff;
+  }
+}
+/*========================================================
+SWITCH CHECKBOXES
+=========================================================*/
+.switch_box {
+  position: relative;
+  top: 0;
+}
+input[type="checkbox"].switch-checkbox{
+  font-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 3.5em;
+  height: 1.5em;
+  background: #ddd;
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch-checkbox:checked{
+  background: #0ebeff;
+}
+
+input[type="checkbox"].switch-checkbox:after{
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+  box-shadow: 0 0 .25em rgba(0,0,0,.3);
+  -webkit-transform: scale(.7);
+  transform: scale(.7);
+  left: 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch-checkbox:checked:after{
+  left: calc(100% - 1.5em);
+}
+/*========================================================
+ACCORDIAN STYLINGS
+=========================================================*/
+.mat-accordion {
+  .mat-expansion-panel-body {
+    padding: 0;
+
+    a.side-nav-details,
+    a.side-nav-details.active {
+      //background-color: #0f6ab4 !important;
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+/*==========================================================
+CUSTOM STYLES
+===========================================================*/
+.witcurve-blue {
+  color: $witcurve-color;
+}
+.witcurve-black {
+  color: $witcurve-black;
+}
+.witcurve-btn {
+    background-color: #171923;
+    color: #60C0FE;
+    padding: 5px 10px;
+    border: 0;
+    margin: 5px;
+    cursor: pointer;
+}
+/*==================================================*/
+.nav-list {
+  .mat-expansion-indicator::after {
+    color: #60c0fe;
+  }
+}
+
+.default-border {
+  border: 1px solid $witcurve-black;
+}
+
+.main-component-body {
+  padding-top: 20px;
+}
+
+.table-wrapper {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid $witcurve-black;
+  border-top: none;
+  border-radius: 10px;
+
+  table {
+    th,
+    td {
+      padding-left: 30px;
+      font-weight: normal;
+      font-size: 14px;
+    }
+  }
+
+  thead tr th {
+    background-color: $witcurve-black;
+    color: #fff;
+  }
+
+  thead tr th:first-child {
+    border-top-left-radius: 10px !important;
+  }
+
+  thead tr th:last-child {
+    border-top-right-radius: 10px !important;
+  }
+}
+
+
+/*=============================================================
+Tooltip styling
+===============================================================*/
+.tooltip-inner {
+  max-width: 444px !important;
+  height: 148px;
+  border-radius: 6px;
+  background-color: rgba(256, 256, 256, 1) !important;
+  color: $witcurve-black !important;
+}
+
+app-section-timetable {
+  .tooltip.show {
+    opacity: 1;
+  }
+}
+.diary-input {
+  .mat-form-field-infix {
+    height: 60px !important;
+  }
+}
