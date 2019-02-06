@@ -1,0 +1,163 @@
+<mat-horizontal-stepper linear  #stepper>
+  <mat-step [stepControl]="firstFormGroup" editable="false">
+    <form [formGroup]="firstFormGroup" class="first-form" #form1>
+      <ng-template matStepLabel>Create Exam</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Name of Exam" formControlName="examName" required>
+      </mat-form-field>
+      <div class="class-select">
+          <mat-form-field>
+              <mat-select [(value)]="selectedClass" formControlName="selectedGrade" placeholder="Select Class" required>
+                <mat-option>None</mat-option>
+                <div class="multiple-options" *ngFor="let class of schoolClassList" >
+                    <mat-option [value]="class">{{class}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+      </div>
+      <div class="dates-wrapper">
+        <mat-form-field>
+          <input matInput [min]="minDate" [max]="maxDate" formControlName="startDate" [matDatepicker]="picker1" placeholder="Start date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [min]="minDate" [max]="maxDate" formControlName="endDate" [matDatepicker]="picker2" placeholder="End date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <br />
+      <div>
+        <button mat-button color="primary" (click)="firstStepSubmit(stepper)">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" editable="false">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Create Slots</ng-template>
+      <div class="slots-wrapper">
+        <mat-list>
+          <mat-list-item>
+            <div class="list-wrapper">
+              <div class="item-header">
+                <h3>Forenoon Slot</h3>
+              </div>
+              <div class="time-wrapper">
+                <mat-form-field>
+                  <input matInput placeholder="Hours" [min]="0" [max]="23" type="number" maxlength="2" formControlName="timeHoursSlotOne" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Minutes" [min]="0" [max]="59" type="number" formControlName="timeMiutesSlotOne" required>
+                </mat-form-field>
+              </div>
+              <div class="duration-wrapper">
+                <mat-form-field>
+                  <input matInput placeholder="Duration in Minutes" type="number" formControlName="durationMiutesSlotOne"
+                    required>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div class="list-wrapper">
+              <div class="item-header">
+                <h3>Afternoon Slot</h3>
+              </div>
+              <div class="time-wrapper">
+                <mat-form-field>
+                  <input matInput placeholder="Hours" [min]="0" [max]="23" type="number" formControlName="timeHoursSlotTwo" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Minutes" type="number" [min]="0" [max]="59" type="number" formControlName="timeMiutesSlotTwo" required>
+                </mat-form-field>
+              </div>
+              <div class="duration-wrapper">
+                <mat-form-field>
+                  <input matInput placeholder="Duration in Minutes" type="number" formControlName="durationMiutesSlotTwo"
+                    required>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{getDate(element.date)}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Exam Day/ Holiday </mat-header-cell>
+          <mat-cell *matCellDef="let element"> Exam Day </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <mat-header-cell *matHeaderCellDef> Slot One </mat-header-cell>
+          <mat-cell *matCellDef="let element"> Forenoon Slot </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <mat-header-cell *matHeaderCellDef> Slot Two </mat-header-cell>
+          <mat-cell *matCellDef="let element"> Afternoon Slot </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <div>
+        <button mat-button color="primary" (click)="secondStepSubmit(stepper)">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" editable="false">
+    
+    
+    <form [formGroup]="thirdFormGroup" class="third-form">
+      <ng-template matStepLabel>Assign Date and Slots</ng-template>
+      <p>You selected Grade: {{selectedGrade}}</p>
+      <div class="time-table-wrapper">
+        <div class="form-array">
+            <mat-card *ngFor="let item of examCreationArray; let i = index">
+                <div class="card-content-wrapper">
+                  <div class="subject-name">
+                    <p>{{item.courseName}}</p>
+                  </div>
+                  <div class="date-select">
+                      <mat-select [(value)]="item.date" (selectionChange)="changed($event, i)" placeholder="Select Date">
+                        <mat-option>None</mat-option>
+                        <div class="dates" *ngFor="let date of examDays" >
+                            <mat-option [value]="date.date">{{date.date}}</mat-option>
+                        </div>
+                      </mat-select>
+                  </div>
+                  <div class="slot-select">
+                      <mat-select [(value)]="item.gsdId" (selectionChange)="changed($event, i)" placeholder="Select Slot">
+                          <mat-option>None</mat-option>
+                          <div class="dates">
+                              <mat-option [value]="foreNoonGsdId">Forenoon</mat-option>
+                              <mat-option [value]="afterNoonGsdId">Afternoon</mat-option>
+                          </div>
+                        </mat-select>
+                    <!-- <mat-button-toggle-group name="slotSelect" type="checkbox" [(ngModel)]="item.gsdId" [selected]="item.gsdId" (ngModelChange)="changed($event, i)">
+                      <mat-button-toggle [value]="foreNoonGsdId">Forenoon</mat-button-toggle>
+                      <mat-button-toggle [value]="afterNoonGsdId">Afternoon</mat-button-toggle>
+                      <mat-button-toggle [value]="null">None</mat-button-toggle>
+                    </mat-button-toggle-group> -->
+                  </div>
+                </div>
+              </mat-card>
+              <div class="button">
+                  <button mat-button color="primary" (click)="consoleForm(stepper)" >Submit</button>
+              </div>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>

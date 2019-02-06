@@ -1,0 +1,42 @@
+<div class="diary-div">
+  <div class="teachers-div d-inline-block">
+    <h3>Teachers</h3>
+    <ng-container *ngFor="let teacherId of getTeacherIdsFromDiaryData()">
+      <div class="teacher-div" [ngClass]="activeTeacherId == teacherId ? 'active-teacher' : ''" (click)="activeTeacherId = teacherId">
+        {{diaryData[teacherId][0].teacherName}} ( {{diaryData[teacherId].length}} )
+      </div>
+    </ng-container>
+  </div>
+  <div class="diary-details-div d-inline-block">
+    <h3>{{diaryData[activeTeacherId][0].teacherName}}</h3>
+      <div class="dairy-detail-div" *ngFor="let diary of diaryData[activeTeacherId]">
+        <div class="standard-details d-inline-block">
+          <div>
+            {{ diary.standard }} &nbsp; {{ diary.section }}
+          </div>
+          <div>
+            {{ diary.board }}
+          </div>
+        </div>
+        <div class="period-time d-inline-block">
+          <div class="text-center">
+            {{ diary.periodFrom }}
+          </div>
+          <div class="text-center" style="line-height: 5px;">
+             -
+          </div>
+          <div class="text-center">
+            {{ diary.periodTo }}
+          </div>
+        </div>
+        <div class="diary-input d-inline-block">
+          <mat-form-field style="width: 350px;">
+            <input matInput placeholder="">
+          </mat-form-field>
+        </div>
+        <div class="diary-submit d-inline-block">
+          <button class="witcurve-btn font-12">SUBMIT</button>
+        </div>
+      </div>
+  </div>
+</div>

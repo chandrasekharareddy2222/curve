@@ -1,0 +1,54 @@
+.diary-div {
+  max-width: 940px;
+  margin: auto;
+
+  .teachers-div {
+    max-width: 200px;
+    margin-right: 70px;
+    margin-top: 20px;
+
+    .teacher-div {
+      border: 1px solid #171923;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .active-teacher {
+      background-color: #60C0FE;
+    }
+  }
+
+  .diary-details-div {
+    vertical-align: top;
+    margin-top: 20px;
+
+    .dairy-detail-div {
+      margin-bottom: 15px;
+    }
+    .standard-details {
+      background-color: #f0f0f0;
+      width: 150px;
+      padding: 5px 10px 5px 15px;
+      border: 1px solid #171923;
+      height: 60px;
+      vertical-align:top;
+    }
+    .period-time {
+      background-color: #f0f0f0;
+      padding: 3px 10px 10px 5px;
+      border: 1px solid #171923;
+      height: 60px;
+      vertical-align:top;
+    }
+    .diary-input {
+      border-top: 1px solid #171923;
+    }
+    .diary-submit {
+      height: 60px;
+      border: 1px solid #171923;
+      padding: 12px 10px 5px 15px;
+      background-color: #f0f0f0;
+    }
+  }
+}
+

@@ -1,0 +1,18 @@
+.sections-input {
+  border: 1px solid grey;
+  background-color: #ffffff;
+  width: 90%;
+  margin: 0 10px;
+  border-radius: 3px;
+
+  .sections-input-header {
+    background-color: #efefef;
+    padding: 10px;
+  }
+
+  .sections-input-body {
+    padding: 10px;
+    min-height: 100px;
+  }
+
+}

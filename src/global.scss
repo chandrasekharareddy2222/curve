@@ -1,0 +1,190 @@
+
+.w-40 {
+  width: 40% !important;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.font-11 {
+  font-size: 11px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-13 {
+  font-size: 13px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.font-15 {
+  font-size: 15px;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-18 {
+  font-size: 18px;
+}
+
+.font-24 {
+  font-size: 24px;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.margin-left-5 {
+  margin-left: 5px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.margin-left-15 {
+  margin-left: 15px;
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.margin-left-25 {
+  margin-left: 25px;
+}
+
+.margin-right-5 {
+  margin-right: 5px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.margin-right-15 {
+  margin-right: 15px;
+}
+
+.margin-right-20 {
+  margin-right: 20px;
+}
+
+.margin-right-25 {
+  margin-right: 15px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-top-15 {
+  margin-top: 15px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-top-25 {
+  margin-top: 25px;
+}
+
+.margin-top-40 {
+  margin-top: 40px;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
+.padding-15{
+  padding: 15px;
+}
+
+.padding-25{
+  padding: 25px;
+}
+
+.padding-top-15 {
+  padding-top: 1.5rem;
+}
+
+.witcurve-field {
+  border: 1px solid #000000;
+  border-radius: 10px;
+  display: flex;
+  label {
+    background-color: #ddd;
+    margin: 0;
+    width: 20%;
+    text-align: center;
+    font-size: 1.4rem;
+    padding: 5px 10px;
+    border-right: 1px solid #000000;
+    margin-right: 15px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .mat-select-value {
+    line-height: 31px;
+  }
+
+  .mat-select-placeholder {
+    font-size: 1.2rem;
+  }
+
+  .mat-select-value-text {
+    font-size: 1.2rem;
+  }
+}
+
+.flex-3 {
+  display: flex;
+}
+
+.center-all {
+  display: flex;
+  align-items: center;
+}
+
+.border-radius-5 {
+  border-radius: 0.5rem;
+}
+
+.border-radius-10 {
+  border-radius: 1rem;
+}
+
+.link {
+  cursor: pointer;
+};
+
+.link:hover {
+  color: #0ebeff;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.mat-form-field-subscript-wrapper {
+  margin-top: 0.3rem !important;
+  .mat-error {
+    font-size: 1rem !important;
+  }
+}

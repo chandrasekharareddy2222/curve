@@ -1,0 +1,76 @@
+<br><br><br>
+<div>
+    <div class="table-wrapper">
+        <table class="table table-striped table-bordered add-app-section-timetable">
+            <thead>
+            <tr>
+                <th></th>
+                <ng-container *ngFor="let day of daysOfWeek; let $i = index;">
+                  <th [attr.id]="'timetable-th-' + $i">{{ day }}</th>
+                </ng-container>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let timeTable of timeTableList">
+                <td class="label-td">{{ timeTable.label }}</td>
+                <ng-container *ngIf="!timeTable.recess" >
+                  <ng-container *ngFor="let day of daysOfWeek; let $dayIndex = index;">
+                    <td *ngIf="!isCourseAndTeacherAvailable(timeTable, day)" class="create-course-td">
+                      <div class="pointer" triggers="click" [autoClose]="'outside'"
+                           [ngbTooltip]=htmlContent [placement]="$dayIndex < daysOfWeek.length - 1 ? 'top' : 'left'"
+                           (click)="sendDetailsForToolTip(timeTable, day)">
+                        <i class="fa fa-plus-circle"></i>
+                      </div>
+                    </td>
+                    <td *ngIf="isCourseAndTeacherAvailable(timeTable, day)" class="course-teacher-td">
+                      <div class="pointer" triggers="click" [autoClose]="'outside'"
+                           [ngbTooltip]=htmlContent [placement]="$dayIndex < daysOfWeek.length - 1 ? 'top' : 'left'"
+                           (click)="sendDetailsForToolTip(timeTable, day)">
+                        <div>
+                          {{ timeTable.details[day].courseCode }}
+                        </div>
+                        <div>
+                          {{ timeTable.details[day].teacherName }}
+                        </div>
+                      </div>
+                    </td>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="timeTable.recess">
+                  <td [colSpan]=daysOfWeek.length class="text-center font-weight-bold"> Break </td>
+                </ng-container>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #htmlContent>
+    <div class="course-teacher-div" (click)="clickedOnCourse($event)">
+        <div class="course-details-div">
+            <span class="tooltip-detail-title d-inline-block font-weight-bold font-12">COURSE</span>
+            <span class="d-inline-block">
+                <select name="course" id="select-course" class="font-11" [(ngModel)]="activatedPeriod.courseId" style="width: 200px">
+                    <!--<option value="{{null}}"></option>-->
+                    <option *ngFor="let ct of getKeysFromObj(courseTeacher)" value="{{ct}}">
+                      {{courseTeacher[ct].courseCode}}
+                    </option>
+                </select>
+                <!--<i class="fa fa-save" (click)="saveCourse()"></i>-->
+            </span>
+        </div>
+        <div class="teacher-details-div">
+            <span class="tooltip-detail-title d-inline-block font-weight-bold font-12">TEACHER</span>
+            <span class="d-inline-block" *ngIf="courseTeacher[activatedPeriod.courseId]">
+                <select name="faculty" id="select-faculty" class="font-11" [(ngModel)]="activatedPeriod.teacherId" style="width: 200px">
+                  <option *ngFor="let teacher of courseTeacher[activatedPeriod.courseId].teachers" value="{{teacher.id}}">
+                      {{teacher.firstName}} {{teacher.lastName}}
+                    </option>
+                </select>
+                <!--<i class="fa fa-save" (click)="saveTeacher()"></i>-->
+            </span>
+        </div>
+        <div class="save-btn-div">
+            <button class="witcurve-btn font-11" (click)="saveSectionDetails($event)">SAVE</button>
+        </div>
+    </div>
+</ng-template>

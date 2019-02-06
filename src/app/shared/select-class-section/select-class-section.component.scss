@@ -1,0 +1,91 @@
+// Dialog Start
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+.heading {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  padding: 5px 10px;
+  background-color: #eeeeee;
+}
+.selected, .classes {
+  border-bottom: 1px solid #eeeeee;
+}
+.selected, .classes, .sections {
+  text-align: center;
+  padding: 1rem;
+}
+.unit-class, .unit-section {
+  font-size: 10px;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 0;
+  border: 1px solid #999999;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.unit-class {
+  width: 3.5rem;
+}
+
+.unit-class:hover, .unit-section:hover {
+  background-color: #0ebeff;
+  color: #ffffff;
+}
+
+.unit-class.selected, .unit-section.selected {
+  background-color: #0ebeff;
+  color: #ffffff;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.unit-c-s {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+  border: 1px solid #999999;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.unit-section.big {
+  font-weight: bold;
+  width: 7rem;
+}
+
+.unit-section {
+  width: 5.5rem;
+}
+
+
+// Dialog End
+
+.tag-d {
+  color: #aaaaaa;
+  cursor: pointer;
+}
+
+.tag-d:hover {
+  color: #0ebeff;
+}
+
+.main-cs {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: center;
+  .cs-container {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 0.5rem;
+  }
+}

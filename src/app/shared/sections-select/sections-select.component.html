@@ -1,0 +1,21 @@
+<div class="sections-input">
+    <div class="sections-input-header">
+        <div class="d-inline-block">Select all Sections</div>
+        <div class="d-inline-block float-right">
+            <div class="switch_box box_1">
+                <input type="checkbox" class="switch-checkbox" (change)="allSectionInput($event)" [checked]="allSectionsSelected">
+            </div>
+        </div>
+    </div>
+    <div class="sections-input-body">
+        <div class="row">
+            <div class="witcurve-checkbox col-sm-4 col-md-3" *ngFor="let section of sections">
+                <input type="checkbox" value="{{section.name}}" id="witcurveCheckbox-{{section.name}}"
+                       name="witcurveCheckbox-{{section.name}}" [checked]="section.isSelected" (change)="sectionChange(section)"/>
+                <label for="witcurveCheckbox-{{section.name}}"></label>
+                <span>{{ section.name }}</span>
+            </div>
+        </div>
+
+    </div>
+</div>

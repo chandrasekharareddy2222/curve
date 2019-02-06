@@ -1,0 +1,205 @@
+<div class="add-staff" *ngIf="formType !== 'edit' || this.staffInfo">
+  <mat-horizontal-stepper [linear]="formType === 'add'" #stepper>
+    <mat-step [stepControl]="employeeFormGroup">
+      <ng-template matStepLabel>Staff Detail</ng-template>
+      <form (ngSubmit)="addUpdateStaff()" [formGroup]="employeeFormGroup" class="add-staff-form margin-top-15">
+        <mat-form-field>
+          <mat-select formControlName="type" placeholder="Staff Role">
+            <mat-option value="TEACHING">
+              Teaching
+            </mat-option>
+            <mat-option value="NON_TEACHING">
+              Non Teaching
+            </mat-option>
+            <mat-option value="ADMIN">
+              Admin
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="margin-left-20">
+          <input formControlName="staffId" matInput placeholder="Employee/Staff ID">
+          <mat-error *ngIf="employeeFormGroup.get('staffId').errors">{{getErrorMessage('staffId')}}</mat-error>
+        </mat-form-field>
+
+        <div class="col-num-3">
+          <mat-form-field class="name">
+            <input formControlName="firstName" matInput placeholder="First Name">
+            <mat-error *ngIf="employeeFormGroup.get('firstName').errors">{{getErrorMessage('firstName')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input formControlName="middleName" matInput placeholder="Middle Name">
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input formControlName="lastName" matInput placeholder="Last Name">
+            <mat-error *ngIf="employeeFormGroup.get('lastName').errors">{{getErrorMessage('lastName')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-num-2">
+          <mat-form-field class="address">
+            <input formControlName="address1" matInput placeholder="House/Flat No." >
+            <mat-error *ngIf="employeeFormGroup.get('address1').errors">{{getErrorMessage('address1')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="address">
+            <input formControlName="address2" matInput placeholder="Location" >
+            <mat-error *ngIf="employeeFormGroup.get('address2').errors">{{getErrorMessage('address2')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-num-5">
+          <mat-form-field class="addex">
+            <input formControlName="city" matInput placeholder="City" >
+            <mat-error *ngIf="employeeFormGroup.get('city').errors">{{getErrorMessage('city')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="addex">
+            <input formControlName="district" matInput placeholder="District" >
+            <mat-error *ngIf="employeeFormGroup.get('district').errors">{{getErrorMessage('district')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="addex">
+            <input formControlName="state" matInput placeholder="State" >
+            <mat-error *ngIf="employeeFormGroup.get('state').errors">{{getErrorMessage('state')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="addex">
+            <input formControlName="country" matInput placeholder="Country" >
+            <mat-error *ngIf="employeeFormGroup.get('country').errors">{{getErrorMessage('country')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="addex">
+            <input formControlName="pincode" type="number" matInput placeholder="ZIP" >
+            <mat-error *ngIf="employeeFormGroup.get('pincode').errors">{{getErrorMessage('pincode')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="personal-info">
+          <div class="title">Personal Info</div>
+          <div class="col-num-3">
+            <mat-form-field class="name">
+              <input matInput formControlName="joiningDate" [matDatepicker]="picker" placeholder="Joining Date">
+              <mat-error *ngIf="employeeFormGroup.get('joiningDate').errors">{{getErrorMessage('joiningDate')}}</mat-error>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="name">
+              <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" placeholder="DOB">
+              <mat-error *ngIf="employeeFormGroup.get('dateOfBirth').errors">{{getErrorMessage('dateOfBirth')}}</mat-error>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="name">
+              <input formControlName="primaryPhone" matInput placeholder="Primary Phone" >
+              <mat-error *ngIf="employeeFormGroup.get('primaryPhone').errors">{{getErrorMessage('primaryPhone')}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-num-3">
+            <mat-form-field class="name">
+              <input formControlName="secondaryPhone" matInput placeholder="Secondary Phone" >
+              <mat-error *ngIf="employeeFormGroup.get('secondaryPhone').errors">{{getErrorMessage('secondaryPhone')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="name">
+                <mat-select formControlName="bloodGroup" placeholder="Blood Group">
+                  <mat-option value="A_POSITIVE">
+                    A+
+                  </mat-option>
+                  <mat-option value="A_NEGATIVE">
+                    A-
+                  </mat-option>
+                  <mat-option value="B_POSITIVE">
+                    B+
+                  </mat-option>
+                  <mat-option value="B_NEGATIVE">
+                    B-
+                  </mat-option>
+                  <mat-option value="AB_POSITIVE">
+                    AB+
+                  </mat-option>
+                  <mat-option value="AB_NEGATIVE">
+                    AB-
+                  </mat-option>
+                  <mat-option value="O_POSITIVE">
+                    O+
+                  </mat-option>
+                  <mat-option value="O_NEGATIVE">
+                    O-
+                  </mat-option>
+                </mat-select>
+              <mat-error *ngIf="employeeFormGroup.get('bloodGroup').errors">{{getErrorMessage('bloodGroup')}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <button type="submit" class="margin-top-15 inline-block" mat-raised-button>Add/Update Staff</button>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Payroll</ng-template>
+      <form [formGroup]="empPayrollFG" class="add-staff-form margin-top-15">
+        <div class="col-num-3">
+          <mat-form-field class="name">
+            <input matInput formControlName="basicSalary" placeholder="Basic Salary">
+            <mat-error *ngIf="empPayrollFG.get('basicSalary').errors">{{getErrorMessageP('basicSalary')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input matInput formControlName="houseRentAllowance" placeholder="HRA">
+            <mat-error *ngIf="empPayrollFG.get('houseRentAllowance').errors">{{getErrorMessageP('houseRentAllowance')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input formControlName="conveyanceAllowance" matInput placeholder="Conveyance Allowance" >
+            <mat-error *ngIf="empPayrollFG.get('conveyanceAllowance').errors">{{getErrorMessageP('conveyanceAllowance')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-num-3">
+          <mat-form-field class="name">
+            <input matInput formControlName="medicalAllowance" placeholder="Medical Allowance">
+            <mat-error *ngIf="empPayrollFG.get('medicalAllowance').errors">{{getErrorMessageP('medicalAllowance')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input matInput formControlName="managerialAllowance" placeholder="Managerial Allowance">
+            <mat-error *ngIf="empPayrollFG.get('managerialAllowance').errors">{{getErrorMessageP('managerialAllowance')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input formControlName="leaveTravelAllowance" matInput placeholder="Leave Travel Allowance" >
+            <mat-error *ngIf="empPayrollFG.get('leaveTravelAllowance').errors">{{getErrorMessageP('leaveTravelAllowance')}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-num-3">
+          <mat-form-field class="name">
+            <input matInput formControlName="providentFund" placeholder="Provident Fund">
+            <mat-error *ngIf="empPayrollFG.get('providentFund').errors">{{getErrorMessageP('providentFund')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input matInput formControlName="professionalTax" placeholder="Professional Tax">
+            <mat-error *ngIf="empPayrollFG.get('professionalTax').errors">{{getErrorMessageP('professionalTax')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="name">
+            <input formControlName="incomeTax" matInput placeholder="Income Tax" >
+            <mat-error *ngIf="empPayrollFG.get('incomeTax').errors">{{getErrorMessageP('incomeTax')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <button type="submit" mat-raised-button (click)="addPayrollForStaff()">Add/Update Payroll</button>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Eligibility</ng-template>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

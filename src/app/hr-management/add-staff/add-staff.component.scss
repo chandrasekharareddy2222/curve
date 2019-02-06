@@ -1,0 +1,42 @@
+.ng-invalid:not(form) {
+  border: none !important;
+}
+.add-staff-form{
+  margin-bottom: 15px;
+}
+.mat-stepper-horizontal {
+  background: transparent !important;
+}
+.col-num-3, .col-num-2, .col-num-5 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  .name {
+    width: 30%;
+  }
+  .address {
+    width: 47%;
+  }
+
+  .addex {
+    width: 18%;
+  }
+}
+
+.personal-info {
+  border:1px dotted grey;
+  padding: 10px;
+  .title {
+    color: #999999;
+    width: 10rem;
+    margin-top: -23px;
+    text-align: center;
+    margin-left: 10px;
+    background: #fafafa;
+  }
+}
+
+.inline-block {
+  display: inline-block !important;
+  margin-top: 15px;
+}

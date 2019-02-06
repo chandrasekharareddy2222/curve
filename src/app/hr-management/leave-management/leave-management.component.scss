@@ -1,0 +1,37 @@
+.action-req {
+  text-align: left;
+  display: inline-block;
+  background-color: #ffffff;
+  width: 40rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  .item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  .label {
+    display: inline-block;
+    width: 40%;
+    font-weight: bolder;
+  }
+  .value {
+    width: 60%;
+    display: inline-block;
+  }
+
+  .appr {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid greenyellow;
+  }
+
+  .reje {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid darkred;
+  }
+}
+
+.margin-left-10 {margin-left: 10px;}

@@ -1,0 +1,222 @@
+<div class="profile-container">
+  <div class="staff-info" *ngIf="staffInfo">
+    <h3>
+      <div mat-card-avatar class="example-header-image"></div>
+      <div>{{staffInfo.firstName + ' ' + staffInfo.lastName }}&nbsp;<span>{{'(' + staffInfo.staffId + ')'}}</span></div>
+      <div class="flex1"></div>
+      <a class="pull-right inline-block" [routerLink]="['/hr_management/edit_staff/' + staffId]"><i class="fa fa-pencil"></i></a>
+    </h3>
+    <div class="minor-info">
+      <span>{{staffInfo.schoolInfo.board}}</span>
+      <span>
+        <i class="fa fa-phone" aria-hidden="true"></i>
+              &nbsp;+91-{{staffInfo.primaryPhone}}
+      </span>
+    </div>
+  </div>
+
+  <div class="tab-container mat-elevation-z8">
+    <mat-tab-group (selectedTabChange)="tabChanged($event)" #tabGroup>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          &nbsp;Attendance
+        </ng-template>
+        <div class="padding-15" *ngIf="fullAttendance">
+          <table class="table table-bordered att-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th *ngFor="let i of Arr(daysInMonth).fill(1), let x = index">{{x+1 > 9 ? '' + (x+1) : '0' + (x+1)}}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let i of Arr(miy).fill(1), let x = index">
+                <td class="bold">{{moment().subtract(x, 'months').format('MMM YYYY')}}</td>
+                <td class="pa" *ngFor="let i of Arr(daysInMonth).fill(1), let ind = index">
+                  <div class="invalid-date" *ngIf="moment().subtract(x, 'months').daysInMonth() < ind+1">
+                    <i class="fa fa-close"></i>
+                  </div>
+                  <div class="valid-date" *ngIf="moment().subtract(x, 'months').daysInMonth() >= ind+1">
+                    <div>{{getAttendance(moment().subtract(x, 'months'), ind + 1)}}</div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          &nbsp;Responsibilities
+        </ng-template>
+        <div class="padding-15">
+          <table class="table table-striped">
+            <thead>
+            <tr><th>Section</th><th>Responsibility</th></tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let res of responsibilities">
+              <td>{{res.standard.grade + '-' +res.standard.section}}</td>
+              <td>{{res.course.masterSubject + '-' + res.course.courseCode}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          &nbsp;Activity Log
+        </ng-template>
+        <div class="padding-15">
+          <ul class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#inbox" role="tab" aria-controls="home" aria-selected="true">
+                <i class="fa fa-inbox"></i>&nbsp;Inbox
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#outbox" role="tab" aria-controls="profile" aria-selected="false">
+                <i class="fa fa-send"></i>&nbsp;Outbox
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="inbox" role="tabpanel" aria-labelledby="home-tab">
+              <div class="form-group row" style="margin: 0;">
+                <select class="form-control col-sm-3" [(ngModel)]="inboxType">
+                  <option value="MEETING_REQUEST" selected>Meeting Request</option>
+                  <option value="PERSONAL">Personal</option>
+                </select>
+              </div>
+
+              <div class="margin-top-10 io-wrapper">
+                <mat-accordion>
+                  <mat-expansion-panel *ngFor="let m of inbox[inboxType].content; let index;">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{'From: ' + m.messageDTOs[0].fromUserName}}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        {{moment(m.createdDate).format('DD/MM/YYYY hh:mmA')}}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="padding-15">
+                      hi
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="outbox" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="form-group row" style="margin: 0;">
+                <select class="form-control col-sm-3" [(ngModel)]="outboxType">
+                  <option value="MEETING_REQUEST" selected>Meeting Request</option>
+                  <option value="PERSONAL">Personal</option>
+                  <option value="SUBJECT_NOTE">Subject Note</option>
+                </select>
+              </div>
+
+              <div class="margin-top-10 io-wrapper">
+                <mat-accordion>
+                  <mat-expansion-panel *ngFor="let m of outbox[outboxType].content; let index;">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{'From: ' + m.messageDTOs[0].fromUserName}}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        {{moment(m.createdDate).format('DD/MM/YYYY hh:mmA')}}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="padding-15">
+                      hi
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          &nbsp;Payroll
+        </ng-template>
+        <div class="padding-15">
+          Payroll
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          &nbsp;Leave Letters
+        </ng-template>
+        <div class="padding-15">
+          <div class="row">
+            <div class="nav flex-column nav-pills col-md-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                <i class="fa fa-history"></i>&nbsp;&nbsp;Previous
+              </a>
+              <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                <i class="fa fa-tasks"></i>&nbsp;&nbsp;Awating Response
+              </a>
+            </div>
+            <div class="tab-content col-md-9" id="v-pills-tabContent">
+              <div class="tab-pane fade text-center" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="leave-req" *ngFor="let leave of leaveRequests">
+                    <div class="action-req" *ngIf="leave.status === 'PENDING'">
+                      <div class="item">
+                        <div class="label">Name of Applicant:</div>
+                        <div class="value">{{staffInfo.firstName + ' ' + staffInfo.lastName }}</div>
+                      </div>
+
+                      <div class="item">
+                        <div class="label">Dates Applied For:</div>
+                        <div class="value">{{leave.fromLeaveDate + ' to ' + leave.toLeaveDate}}</div>
+                      </div>
+
+                      <div class="item">
+                        <div class="label">Reason:</div>
+                        <div class="value">{{leave.reason}}</div>
+                      </div>
+                      <div class="status text-center padding-10">
+                        <a class="md-button" [routerLink]="['/hr_management/leave_management']">Manage Leaves</a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="tab-pane fade show active text-center" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="leave-req" *ngFor="let leave of leaveRequests">
+                    <div class="action-taken" *ngIf="leave.status !== 'PENDING'">
+                      <div class="item">
+                        <div class="label">Name of Applicant:</div>
+                        <div class="value">{{staffInfo.firstName + ' ' + staffInfo.lastName }}</div>
+                      </div>
+
+                      <div class="item">
+                        <div class="label">Dates Applied For:</div>
+                        <div class="value">{{leave.fromLeaveDate + ' to ' + leave.toLeaveDate}}</div>
+                      </div>
+
+                      <div class="item">
+                        <div class="label">Reason:</div>
+                        <div class="value">{{leave.reason}}</div>
+                      </div>
+
+                      <div class="status text-center padding-10">
+                        <span [ngClass]="leave.status === 'APPROVED' ? 'appr' : 'reje'">{{leave.status}}</span>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

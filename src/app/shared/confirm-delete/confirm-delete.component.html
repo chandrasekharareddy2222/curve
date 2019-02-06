@@ -1,0 +1,15 @@
+<ng-template #confirmDelete let-c="close" let-d="dismiss">
+  <div class="modal-header font-16">Delete</div>
+  <div class="modal-body">
+    <div class="padding-15 font-16" *ngIf="deleteMessage">
+      Are you sure you want to delete this {{ deleteMessage }}
+    </div>
+    <div class="padding-15 font-13" *ngIf="!deleteMessage">
+      Are you sure you want to delete
+    </div>
+  </div>
+  <div class="modal-footer padding-15">
+    <button type="button" class="font-14 witcurve-btn" (click)="d(true)">Cancel</button>
+    <button type="button" class="font-14 witcurve-btn" (click)="c(false)">Yes</button>
+  </div>
+</ng-template>

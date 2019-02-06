@@ -1,0 +1,18 @@
+<div class="container">
+  <button mat-stroked-button (click)="goToExamCreation()"><i class="fa fa-plus" aria-hidden="true"></i>ADD NEW EXAM</button>
+  <hr>
+  <mat-card class="hr-card">
+    <mat-card-header>
+
+      <mat-card-title>{{examsData.name}}</mat-card-title>
+
+    </mat-card-header>
+    <mat-card-content>
+      <div>{{examsData.startDate}}</div>
+      <div>{{examsData.endDate}}</div>
+      <div>{{examsData.grade}}</div>
+      <mat-card-actions align="end"> <button mat-stroked-button>View / Add Scores</button> </mat-card-actions>
+    </mat-card-content>
+
+  </mat-card>
+</div>

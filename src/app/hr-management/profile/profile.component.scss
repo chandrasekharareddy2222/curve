@@ -1,0 +1,90 @@
+.att-table {
+  th, td {
+    font-size: 12px;
+  }
+  td.pa {
+    .invalid-date {
+      color: #dee2e6;
+      font-size: 16px;
+    }
+    .valid-date{
+
+    }
+  }
+}
+
+.staff-info {
+  padding: 10px;
+  margin-bottom: 15px;
+  h3 {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 1.2rem;
+    }
+  }
+  .minor-info span {
+    font-size: 1.3rem;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .example-header-image {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 5px;
+    background-image: url('../../../assets/images/generic.png');
+    background-size: cover;
+  }
+}
+
+.io-wrapper {
+  .mat-expansion-panel-header {
+    padding: 0 15px;
+    height: 35px;
+  }
+}
+
+.row {
+  margin: 0;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.action-req, .action-taken {
+  text-align: left;
+  display: inline-block;
+  background-color: #ffffff;
+  width: 40rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  .item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  .label {
+    display: inline-block;
+    width: 40%;
+    font-weight: bolder;
+  }
+  .value {
+    width: 60%;
+    display: inline-block;
+  }
+
+  .appr {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid greenyellow;
+  }
+
+  .reje {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid darkred;
+  }
+}

@@ -1,0 +1,41 @@
+<div>
+    <div>Assign Faculty</div>
+    <br>
+
+    <div class="table-wrapper">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Master Subject</th>
+                <th>Course Code</th>
+                <th>Description</th>
+                <th>Sub Course</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataSource">
+                <td>{{data.master_subject}}</td>
+                <td>{{data.code}}</td>
+                <td>{{data.desc}}</td>
+                <td>{{data.course}}</td>
+                <td>
+                    <div *ngIf="data.assigned && !data.edit">
+                        <span style="display: inline-block; width: 200px">{{data.assigned}}</span>
+                        &nbsp;<i class="fa fa-pencil" (click)="data.edit = true"></i>
+                    </div>
+                    <div *ngIf="!data.assigned || data.edit">
+                        <select name="faculty" id="select-faculty" [(ngModel)]="data.assigned" style="width: 200px">
+                            <option value="qw">qw</option>
+                            <option value="qw1">qw1</option>
+                            <option value="qw2">qw2</option>
+                            <option value="qw3">qw3</option>
+                        </select>
+                        &nbsp;<i class="fa fa-save" (click)="data.edit = false"></i>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

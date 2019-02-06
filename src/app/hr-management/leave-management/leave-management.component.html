@@ -1,0 +1,26 @@
+<div class="leave-management" *ngIf="leaveRequests">
+  <div class="leave-req" *ngFor="let ll of keys(leaveRequests)">
+    <div class="rep" *ngFor="let leave of leaveRequests[ll]">
+      <div class="action-req" *ngIf="leave.status === 'PENDING'">
+        <div class="item">
+          <div class="label">Name of Applicant:</div>
+          <div class="value">{{leave.staffName}}</div>
+        </div>
+
+        <div class="item">
+          <div class="label">Dates Applied For:</div>
+          <div class="value">{{leave.fromLeaveDate + ' to ' + leave.toLeaveDate}}</div>
+        </div>
+
+        <div class="item">
+          <div class="label">Reason:</div>
+          <div class="value">{{leave.reason}}</div>
+        </div>
+        <div class="status padding-10">
+          <button mat-flat-button color="primary" (click)="approveRequest(leave)">Approve</button>
+          <button class="margin-left-10" mat-flat-button color="warn" (click)="declineRequest(leave)">Decline</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
