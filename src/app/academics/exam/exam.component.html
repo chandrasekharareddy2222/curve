@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <button mat-stroked-button (click)="goToExamCreation()"><i class="fa fa-plus" aria-hidden="true"></i>ADD NEW EXAM</button>
   <hr>
   <mat-card class="hr-card">
@@ -15,4 +15,59 @@
     </mat-card-content>
 
   </mat-card>
+</div> -->
+
+<div class="exam-container">
+
+  <button mat-stroked-button (click)="goToExamCreation()"><i class="fa fa-plus" aria-hidden="true"></i> ADD NEW EXAM</button>
+  <hr>
+  <form [formGroup]="firstFormGroup" class="first-form" #form1>
+    <div class="class-select">
+      <mat-form-field>
+        <mat-select [(value)]="selectedClass" formControlName="selectedGrade" placeholder="Select Grade" (selectionChange)="onChange($event)" required>
+          <mat-option>None</mat-option>
+          <div class="multiple-options" *ngFor="let class of schoolClassList">
+            <mat-option [value]="class">{{class}}</mat-option>
+          </div>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="dates-wrapper">
+      <mat-form-field>
+        <input matInput [min]="minDate" [max]="maxDate" formControlName="startDate" [matDatepicker]="picker1"
+          placeholder="Start date">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [min]="minDate" [max]="maxDate" formControlName="endDate" [matDatepicker]="picker2" placeholder="End date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <br />
+    <div>
+      <!-- <button mat-button color="primary" (click)="firstStepSubmit(stepper)">Submit</button> -->
+      <button mat-stroked-button align="end" (click)="getExams()">Submit</button>
+    </div>
+  </form>
+  <ng-template matStepLabel>Exams List</ng-template>
+  <div *ngIf="showcard">
+    <mat-card class="example-card exam-list" *ngFor="let exam of examsData">
+      <mat-card-header>
+        <mat-card-title>{{exam.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="exam-content">
+          <div>{{exam.startDate}}</div>
+          <div>{{exam.endDate}}</div>
+          <div>{{exam.grade}}</div>
+        </div>
+        <div class="exam-view">
+          <mat-card-actions align="end"> <button mat-stroked-button>View / Add Scores</button> </mat-card-actions>
+        </div>
+        <div class="clearfix"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

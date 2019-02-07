@@ -13,4 +13,9 @@ export class ExamService {
     getExamsById(Id = 1004) {
         return this.http.get<any>(`${environment.apiUrl}/api/exams/${Id}`);
       }
+
+      getExamsBySchoolInfoAndGrade(examData:any) {
+          console.log("data"+JSON.stringify(examData));
+          return this.http.get<any>(`${environment.apiUrl}/api/exams/school-info/${examData.schoolInfo}/grade/${examData.grade}?startDate=${examData.startDate}&endDate=${examData.endDate}`)
+      }
 }
